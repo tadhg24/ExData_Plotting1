@@ -36,7 +36,7 @@ powerDataSize <- format(object.size(read.table("household_power_consumption.txt"
 powerDataSize
 
 # Load in Power Data
-powerData <- read.table("household_power_consumption.txt", sep = ";", header = TRUE)
+powerData <- read.table("household_power_consumption.txt", sep = ";", header = TRUE, na = "?")
 
 # Convert Date POSIXct
 powerData$Date <- as.POSIXlt(powerData$Date, format = "%d/%m/%Y")
@@ -50,26 +50,6 @@ powerData$DateTime <- as.POSIXct(powerData$DateTime, format = "%Y-%m-%d:%H:%M:%S
 
 # Reorder Columns so DateTime is First and remove original Date & Time columns
 powerData <- powerData[, c(10, 3:9)]
-
-
-# Convert Data from Factor to Numeric
-powerData$Global_active_power <- as.character(powerData$Global_active_power)
-powerData$Global_active_power <- as.numeric(powerData$Global_active_power)
-
-powerData$Global_reactive_power <- as.character(powerData$Global_reactive_power)
-powerData$Global_reactive_power <- as.numeric(powerData$Global_reactive_power)
-
-powerData$Voltage <- as.character(powerData$Voltage)
-powerData$Voltage <- as.numeric(powerData$Voltage)
-
-powerData$Global_intensity <- as.character(powerData$Global_intensity)
-powerData$Global_intensity <- as.numeric(powerData$Global_intensity)
-
-powerData$Sub_metering_1 <- as.character(powerData$Sub_metering_1)
-powerData$Sub_metering_1 <- as.numeric(powerData$Sub_metering_1)
-
-powerData$Sub_metering_2 <- as.character(powerData$Sub_metering_2)
-powerData$Sub_metering_2 <- as.numeric(powerData$Sub_metering_2)
 
 
 ############################################################################################
